@@ -29,6 +29,13 @@
 	
 	<context:component-scan base-package="board_dev" />
 	
+	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
+			<bean class="board_dev.common.resolver.CustomMapArgumentResolver"></bean>
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+	
+	
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />

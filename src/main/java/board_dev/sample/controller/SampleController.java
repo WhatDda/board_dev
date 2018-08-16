@@ -1,14 +1,20 @@
 package board_dev.sample.controller;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import board_dev.common.common.CommandMap;
+import board_dev.sample.service.SampleService;
 
 
 @Controller
@@ -18,12 +24,47 @@ public class SampleController {
 	@Resource(name="sampleService")
 	private SampleService sampleService;
 	
-	@RequestMapping(value="/sample/openSampleBoardList.do")
-	public ModelAndView openSampleBoardList(Map<String, Object> commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/sample/boardList");
+/*	@RequestMapping(value="/sample/testMapArgumentResolver.do")
+	public ModelAndView testMapArgumentResolver(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("/sample/testMapArgumentResolver");
 		
-		List<Map<String, Object>> list = sampleService.selectBoardList(commandMap);
-		mv.addObject("list", list);
+		if(commandMap.isEmpty() == false) {
+			Iterator<Entry<String,Object>> iterator = commandMap.getMap().entrySet().iterator();
+			Entry<String, Object> entry = null;
+			while(iterator.hasNext()) {
+				entry = iterator.next();
+				log.debug("key : " + entry.getKey() + ", values : " + entry.getValue());
+			}
+		}
+
+		return mv;
+	}*/
+	
+	
+	@RequestMapping(value="/sample/openBoardList.do")
+    public ModelAndView openSampleBoardList(Map<String,Object> commandMap) throws Exception{
+        ModelAndView mv = new ModelAndView("/sample/boardList");
+         
+        List<Map<String,Object>> list = sampleService.selectBoardList(commandMap);
+        mv.addObject("list", list);
+         
+        return mv;
+    }
+
+	
+	
+	@RequestMapping(value="/sample/openBoardWrite.do")
+	public ModelAndView openBoardWrite(CommandMap commandMap) throws Exception{
+	    ModelAndView mv = new ModelAndView("/sample/boardWrite");
+	     
+	    return mv;
+	}
+
+	@RequestMapping(value="/sample/insertBoard.do")
+	public ModelAndView insertBoard(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList");
+		
+		sampleService.insetBoard(commandMap.getMap());
 		
 		return mv;
 	}
