@@ -10,7 +10,7 @@
 </head>
 <body>
 <h2>게시판 목록</h2>
-<table style="border:1px solid #ccc">
+<table class="board_list">
 	<colgroup>
 		<col width="10%" />
 		<col width="*" />
@@ -31,7 +31,10 @@
 				<c:forEach items="${list}" var="row">
 					<tr>
 						<td>${row.IDX}</td>
-						<td>${row.TITLE}</td>
+						<td class="title>
+							<a href="#title" name="title">${row.TITLE}</a>
+							<input type="hidden" id="IDX" value="${row.IDX }">	
+						</td>
 						<td>${row.HIT_CNT}</td>
 						<td>${row.CREA_DTM}</td>
 					</tr>
@@ -45,6 +48,35 @@
 		</c:choose>
 	</tbody>
 </table>
+<br />
+<a href="#this" class="btn" id="write">글쓰기</a>
 
+<%@ include file="/WEB-INF/include/include-body.jspf" %>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#write").on("click",function(e){
+			e.preventDefault();
+			fn_openBoardWrite();
+		});
+		
+		$("a[name='title']").on("click",function(e){
+			e.preventDefault();
+			fn_openBoardDetail($(this));
+		});
+	});
+	
+	function fn_openBoardWrite(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='/sample/openBoardWrite.do' />");
+		comSubmit.submit();
+	}
+	
+	function fn_openBoardDetail(obj){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='/sample/openBoardDetail.do' />");
+		comSubmit.addParam("IDX", obj.parent().find("#IDX").val());
+		comSubmit.submit();
+	}
+</script>
 </body>
 </html>
