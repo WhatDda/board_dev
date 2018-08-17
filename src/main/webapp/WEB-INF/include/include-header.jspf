@@ -10,5 +10,6 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/ui.css' />" />
 
 <!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="<c:url value='/js/jquery-3.2.1.min.js' />"  charset="utf-8"></script>
 <script src="<c:url value='/js/common.js' />" charset="utf-8"></script>

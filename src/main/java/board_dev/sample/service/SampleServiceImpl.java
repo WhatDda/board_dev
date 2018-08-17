@@ -28,7 +28,6 @@ public class SampleServiceImpl implements SampleService{
 	public void insetBoard(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		sampleDAO.insertBoard(map);
-		
 	}
 
 	@Override

@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="/WEB-INF/include/include-header.jspf" %>
 </head>
 <body>
 <h2>게시판 목록</h2>
@@ -31,7 +28,7 @@
 				<c:forEach items="${list}" var="row">
 					<tr>
 						<td>${row.IDX}</td>
-						<td class="title>
+						<td class="title">
 							<a href="#title" name="title">${row.TITLE}</a>
 							<input type="hidden" id="IDX" value="${row.IDX }">	
 						</td>
@@ -74,7 +71,7 @@
 	function fn_openBoardDetail(obj){
 		var comSubmit = new ComSubmit();
 		comSubmit.setUrl("<c:url value='/sample/openBoardDetail.do' />");
-		comSubmit.addParam("IDX", obj.parent().find("#IDX").val());
+ 		comSubmit.addParam("IDX", obj.parent().find("#IDX").val());
 		comSubmit.submit();
 	}
 </script>
