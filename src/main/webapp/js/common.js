@@ -29,9 +29,14 @@ function ComSubmit(opt_formId){
 	};
 	
 	this.submit = function submit(){
-		var frm = $("#"+this.formId[0]);
+		var frm = $("#"+this.formId);
+		/*
 		frm.action = this.url;
 		frm.method = "post";
 		frm.submit();
+		*/
+		frm.attr("action", this.url);
+		frm.submit();
+
 	};
 }

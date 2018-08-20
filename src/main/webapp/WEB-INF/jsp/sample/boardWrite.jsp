@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form id="frm">
+	<form id="frm" method="post">
 		<table class="board_view">
 			<colgroup>
 				<col width="15%">
@@ -34,18 +34,21 @@
 	
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>
 	<script type="text/javascript">
+/*   	console.log("load1"); */
 		$(document).ready(function(){
 			$("#list").on("click", function(e){
 				e.preventDefault();
 				fn_openBoardList();
 			});
-			
+/* 			console.log("load2"); */
 			$("#write").on("click", function(e){
+				console.log("load3");
+				/* debugger; */
 				e.preventDefault();
 				fn_insertBoard();
 			});
-		});
-		
+		}); 
+		 
 			
 		
 		function fn_openBoardList(){
@@ -58,7 +61,8 @@
 		
 		function fn_insertBoard(){
 			var comSubmit = new ComSubmit("frm");
-			comSubmit.setUrl("<c:url value='/sample/insertBoard.do' />");
+/* 			comSubmit.setUrl("<c:url value='/sample/insertBoard.do' />"); */
+			comSubmit.setUrl("/board_dev/sample/insertBoard.do");
 			comSubmit.submit();
 		};
 	</script>

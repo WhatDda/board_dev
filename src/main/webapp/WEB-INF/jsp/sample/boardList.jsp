@@ -46,7 +46,7 @@
 	</tbody>
 </table>
 <br />
-<a href="#this" class="btn" id="write">글쓰기</a>
+<a href="/board_dev/sample/openBoardWrite.do" class="btn">글쓰기</a>
 
 <%@ include file="/WEB-INF/include/include-body.jspf" %>
 <script type="text/javascript">
