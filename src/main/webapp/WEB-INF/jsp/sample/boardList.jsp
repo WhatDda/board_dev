@@ -64,14 +64,16 @@
 	
 	function fn_openBoardWrite(){
 		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/sample/openBoardWrite.do' />");
+/* 		comSubmit.setUrl("<c:url value='/sample/openBoardWrite.do' />"); */
+		comSubmit.setUrl("/board_dev/sample/openBoardWrite.do");
 		comSubmit.submit();
 	}
 	
 	function fn_openBoardDetail(obj){
 		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/sample/openBoardDetail.do' />");
- 		comSubmit.addParam("IDX", obj.parent().find("#IDX").val());
+/* 		comSubmit.setUrl("<c:url value='/sample/openBoardDetail.do' />"); */
+		comSubmit.setUrl("/board_dev/sample/openBoardDetail.do");
+		comSubmit.addParam("IDX", obj.parent().find("#IDX").val());
 		comSubmit.submit();
 	}
 </script>

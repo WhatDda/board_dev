@@ -56,15 +56,18 @@
 		
 		function fn_openBoardList(){
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/sample/openBoardList.do' />");
+/* 			comSubmit.setUrl("<c:url value='/sample/openBoardList.do' />"); */
+			comSubmit.setUrl("/board_dev/sample/openBoardList.do");
 			comSubmit.submit();
 		}
 		
 		function fn_openBoardUpdate(){
 			var idx = "${map.IDX}";
-			var comSubmit = new Comsubmit();
-			comSubmit.setUrl("<c:url value='/sample/openBoardUpdate.do' />");
+			var comSubmit = new ComSubmit();
+/* 			comSubmit.setUrl("<c:url value='/sample/openBoardUpdate.do' />"); */
+			comSubmit.setUrl("/board_dev/sample/openBoardUpdate.do");
 			comSubmit.addParam("IDX", idx);
+			
 			comSubmit.submit();
 		}
 	</script>

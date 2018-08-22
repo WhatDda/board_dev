@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 </head>
 <body>
-	<from id="frm">
+	<form id="frm">
 	<table class="board_view">
 		<colgroup>
 			<col width="15%" />
@@ -18,7 +18,9 @@
 		<tbody>
 			<tr>
 				<th scope="row">글 번호</th>
-				<td>${map.TITLE }</td>
+				<td>${map.TITLE }
+					<input type="hidden" id="IDX" name="IDX" value="${map.IDX }">
+				</td>
 				<th scope="row">조회수</th>
 				<td>${map.HIT_CNT }</td>
 			</tr>
@@ -41,7 +43,7 @@
 			</tr>					
 		</tbody>
 	</table>
-	</from>
+	</form>
 	
 	<a href="#this" class="btn" id="list">목록으로</a>
 	<a href="#this" class="btn" id="update">저장하기</a>
@@ -57,7 +59,7 @@
 			
 			$("#update").on("click", function(e){
 				e.preventDefault();
-				fn_openBoardUpdate();
+				fn_updateBoard();
 			});
 			
 			$("#delete").on("click", function(e){
@@ -68,21 +70,23 @@
 		
 		function fn_openBoardList(){
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/sample/openBoardList.do' />");
+/* 			comSubmit.setUrl("<c:url value='/sample/openBoardList.do' />"); */
+			comSubmit.setUrl("/board_dev/sample/openBoardList.do");
 			comSubmit.submit();
 		}
 		
-		function fn_openBoardUpdate(){
-			var idx = "${map.IDX}";
-			var comSubmit = new Comsubmit();
-			comSubmit.setUrl("<c:url value='/sample/openBoardUpdate.do' />");
-			comSubmit.addParam("IDX", idx);
+		function fn_updateBoard(){
+			var comSubmit = new ComSubmit("frm");
+/* 			comSubmit.setUrl("<c:url value='/sample/openBoardUpdate.do' />"); */
+			comSubmit.setUrl("/board_dev/sample/updateBoard.do");
+			/* comSubmit.addParam("IDX", idx); */
 			comSubmit.submit();
 		}
 		
 		function fn_deleteBoard(){
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/sample/deleteBoard.do' />");
+/* 			comSubmit.setUrl("<c:url value='/sample/deleteBoard.do' />"); */
+			comSubmit.setUrl("/board_dev/sample/deleteBoard.do");
 			comSubmit.addParam("IDX", $("#IDX").val());
 			comSubmit.submit();
 		}
