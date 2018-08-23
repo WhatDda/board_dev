@@ -44,8 +44,8 @@ public class SampleController {
 	@RequestMapping(value="/sample/openBoardList.do")
     public ModelAndView openBoardList(Map<String,Object> commandMap) throws Exception{
         ModelAndView mv = new ModelAndView("/sample/boardList");
-        List<Map<String,Object>> list = sampleService.selectBoardList(commandMap);
-        mv.addObject("list", list);
+ /*       List<Map<String,Object>> list = sampleService.selectBoardList(commandMap);
+        mv.addObject("list", list); */
         return mv;
     }
 
@@ -58,6 +58,23 @@ public class SampleController {
 	    return mv;
 	}
 
+	@RequestMapping(value="/sample/selectBoardList")
+	public ModelAndView selectBoardList(CommandMap commandMap) throws Exception{
+	ModelAndView mv = new ModelAndView("jsonView");
+	
+	List<Map<String, Object>> list = sampleService.selectBoardList(commandMap.getMap());
+	mv.addObject("list", list);
+	if(list.size() > 0) {
+		mv.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
+	}
+	else {
+		mv.addObject("TOTAL", 0);
+	}
+	
+	return mv;
+}
+	
+	
 	@RequestMapping(value="/sample/insertBoard.do")
 	public ModelAndView insertBoard(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
